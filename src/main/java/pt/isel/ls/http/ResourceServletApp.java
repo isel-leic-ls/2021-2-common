@@ -6,9 +6,9 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TimeServletApp {
+public class ResourceServletApp {
 
-    private static final Logger log = LoggerFactory.getLogger(TimeServletApp.class);
+    private static final Logger log = LoggerFactory.getLogger(ResourceServletApp.class);
 
     /*
      * TCP port where to listen.
@@ -26,7 +26,7 @@ public class TimeServletApp {
 
         Server server = new Server(port);
         ServletHandler handler = new ServletHandler();
-        TimeServlet servlet = new TimeServlet();
+        ResourceServlet servlet = new ResourceServlet();
 
         handler.addServletWithMapping(new ServletHolder(servlet), "/*");
         log.info("registered {} on all paths", servlet);
@@ -35,7 +35,6 @@ public class TimeServletApp {
         server.start();
 
         log.info("server started listening on port {}", port);
-
         server.join();
 
         log.info("main is ending");
