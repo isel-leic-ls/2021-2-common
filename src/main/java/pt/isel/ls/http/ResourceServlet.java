@@ -69,13 +69,13 @@ public class ResourceServlet extends HttpServlet {
     // TODO assumes Content-Length present and UTF-8 charset
     // TODO does not handle repeated names
     // Just for demonstration propose
-    public static Map<String,String> retrieveFrom(HttpServletRequest req) throws IOException{
+    public static Map<String,String> retrieveFrom(HttpServletRequest req) throws IOException {
         Map<String, String> map = new HashMap<String,String>();
         byte[] bytes = new byte[req.getContentLength()];
         req.getInputStream().read(bytes);
         String content = new String(bytes);
         String[] pairs = content.split("&");
-        for(String pair : pairs) {
+        for (String pair : pairs) {
             String[] kvp = pair.split("=");
             map.put(URLDecoder.decode(kvp[0], "UTF-8"),
                     URLDecoder.decode(kvp.length == 2 ? kvp[1] : "", "UTF-8"));
